@@ -76,7 +76,7 @@ var render_juego=function(){
 }
 
 var logica_juego=function(){
-	if(EM.isTouchUp()) {
+	if(EM.isTouchDown()) {
 		if(personaje.tocado(EM.canX,EM.canY)===1){
 			if(personaje.direccion===2){
 				personaje.mover(6,2,0,canvas.width);
