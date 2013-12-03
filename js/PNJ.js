@@ -87,7 +87,7 @@ var PNJ=function(x,y,d,v,pMin,pMax,sr){
 	this.sprite.src = sr
 }
 
-var onImageLoad = function(){
+var onImageLoad=function(){
 	console.log("Imagen cargada.");
 	cargado=1;
 }

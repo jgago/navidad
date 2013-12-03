@@ -78,21 +78,11 @@ var render_juego=function(){
 var logica_juego=function(){
 	if(EM.isTouchDown()) {
 		if(personaje.tocado(EM.canX,EM.canY)===1){
-			if(personaje.direccion===2){
-				personaje.mover(6,2,0,canvas.width);
-			}else{
-				personaje.parar();
-			}
+			personaje.mover(6,2,0,canvas.width);
 		}
-		else
-		{
-			if(personaje2.tocado(EM.canX,EM.canY)===1){
-				if(personaje2.direccion===2){
-					personaje2.mover(3,2,0,canvas.width);
-				}else{
-					personaje2.parar();
-				}
-			}
+		
+		if(personaje2.tocado(EM.canX,EM.canY)===1){
+			personaje2.mover(3,2,0,canvas.width);
 		}
 	}	
 }
