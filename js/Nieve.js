@@ -29,6 +29,7 @@ var Nieve=function(tam){
 	
 
 	this.render=function(){
+		ctx.fillStyle="white";
 		for(var i=0;i<matriz.length;i++){
 			matriz[i][1]=matriz[i][1]+matriz[i][2];
 			ctx.fillRect(matriz[i][0]+Math.random()*canvas.width/100,matriz[i][1],1,2);

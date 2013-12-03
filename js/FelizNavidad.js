@@ -22,7 +22,7 @@ function locationVars (vr){
 	}
 }
 
-function setFullscreen(){
+function setFullScreen(){
 	var w=window.innerWidth/canvas.width;
 	var h=window.innerHeight/canvas.height;
 	var scale=Math.min(h,w);
@@ -47,7 +47,7 @@ main = function() {
 	// definimos la dimension del canvas. 
 	canvas.width  = window.innerWidth;
 	canvas.height = window.innerHeight;
-	setFullscreen();
+	setFullScreen();
 	
 	personaje=new PNJ(10,canvas.height/2-32,2,5,10,canvas.width/2-32,"imagenes/person-sprite.png");
 	personaje2=new PNJ(canvas.width/2-32,canvas.height/2-32,6,2,canvas.width/2-32,canvas.width-32,"imagenes/person-sprite2.png");
@@ -66,20 +66,26 @@ var hilo_juego=function(){
 
 var render_juego=function(){
 	ctx.clearRect(0,0,canvas.width, canvas.height);
-
-	ctx.font="1.5em Arial";
-	ctx.fillStyle="white";
-	ctx.textAlign="center";
-	ctx.fillText("¡FELIZ NAVIDAD "+locationVars('nombre')+"!",canvas.width/2,canvas.height/2);
 	
-	personaje.render();
+		personaje.render();
 	personaje2.render();
+
+	ctx.font="3em Calibri";
+	ctx.strokeStyle="white";
+	ctx.textAlign="center";
+	ctx.textBaseline="top";
+	ctx.strokeText("¡FELIZ NAVIDAD "+locationVars('nombre')+"!",canvas.width/2,0,canvas.width);
 	
-	ctx.fillStyle="brown";
-	ctx.fillRect(canvas.width/10,canvas.height/2-10,100,10);
+
 	
 	ctx.fillStyle="white";
 	ctx.fillRect(0,canvas.height/2,canvas.width,canvas.height/2);
+	
+	ctx.font="italic 1em Calibri";
+	ctx.fillStyle="green";
+	ctx.textAlign="center";
+	ctx.textBaseline="bottom";
+	ctx.fillText("By J.GAGO",canvas.width/2,canvas.height,canvas.width);
 	
 	arrayNieve.render();
 }
