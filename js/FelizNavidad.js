@@ -4,6 +4,7 @@ var personaje=null;
 var personaje2=null;
 var arrayNieve;
 var EM;
+var cadenaMensaje;
 
 function locationVars (vr){		
 	try{
@@ -56,6 +57,7 @@ main = function() {
 	EM=new EventManager();
 	EM.canvas = canvas;
 	EM.addEventsListeners();
+	cadenaMensaje="¡FELIZ NAVIDAD "+locationVars('nombre')+"!";
 	setInterval(hilo_juego,100);
 }
 
@@ -67,16 +69,14 @@ var hilo_juego=function(){
 var render_juego=function(){
 	ctx.clearRect(0,0,canvas.width, canvas.height);
 	
-	personaje.render();
-	personaje2.render();
-
 	ctx.font="bold 1.5em Calibri";
 	ctx.fillStyle="white";
 	ctx.textAlign="center";
 	ctx.textBaseline="top";
-	ctx.fillText("¡FELIZ NAVIDAD "+locationVars('nombre')+"!",canvas.width/2,0,canvas.width);
-	
+	ctx.fillText(cadenaMensaje,canvas.width/2,0,canvas.width);
 
+	personaje.render();
+	personaje2.render();
 	
 	ctx.fillStyle="white";
 	ctx.fillRect(0,canvas.height/2,canvas.width,canvas.height/2);
