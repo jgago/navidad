@@ -84,12 +84,14 @@ var logica_juego=function(){
 				personaje.parar();
 			}
 		}
-		
-		if(personaje2.tocado(EM.canX,EM.canY)===1){
-			if(personaje2.direccion===2){
-				personaje2.mover(3,2,0,canvas.width);
-			}else{
-				personaje2.parar();
+		else
+		{
+			if(personaje2.tocado(EM.canX,EM.canY)===1){
+				if(personaje2.direccion===2){
+					personaje2.mover(3,2,0,canvas.width);
+				}else{
+					personaje2.parar();
+				}
 			}
 		}
 	}	

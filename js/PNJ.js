@@ -2,7 +2,6 @@
 var ctx = null;
 var cargado=0;
 
-
 var PNJ=function(x,y,d,v,pMin,pMax,sr){
 	this.x=x;
 	this.y=y;
