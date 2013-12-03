@@ -67,14 +67,14 @@ var hilo_juego=function(){
 var render_juego=function(){
 	ctx.clearRect(0,0,canvas.width, canvas.height);
 	
-		personaje.render();
+	personaje.render();
 	personaje2.render();
 
-	ctx.font="3em Calibri";
-	ctx.strokeStyle="white";
+	ctx.font="bold 1.5em Calibri";
+	ctx.fillStyle="white";
 	ctx.textAlign="center";
 	ctx.textBaseline="top";
-	ctx.strokeText("¡FELIZ NAVIDAD "+locationVars('nombre')+"!",canvas.width/2,0,canvas.width);
+	ctx.fillText("¡FELIZ NAVIDAD "+locationVars('nombre')+"!",canvas.width/2,0,canvas.width);
 	
 
 	
