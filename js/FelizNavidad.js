@@ -2,27 +2,11 @@
 var ctx = null;
 var personaje=null;
 var personaje2=null;
+var arbol=null;
 var arrayNieve;
 var EM;
-var cadenaMensaje;
-var contador=0;
+var mensaje;
 
-function locationVars (vr){		
-	try{
-        var src = String( window.location.href ).split('?')[1];
-        var vrs = src.split('&');
- 
-        for (var x = 0, c = vrs.length; x < c; x++) {
-        	if (vrs[x].indexOf(vr) != -1){
-        		return decodeURI( vrs[x].split('=')[1] ).toUpperCase();
-        		break;
-        	}
-        }
-	}
-	catch(err){
-		return "A TODOS";
-	}
-}
 
 function setFullScreen(){
 	var w=window.innerWidth/canvas.width;
@@ -51,15 +35,16 @@ main = function() {
 	canvas.height = window.innerHeight;
 	setFullScreen();
 	
-	personaje=new PNJ(10,canvas.height/2-32,2,5,10,canvas.width/2-32,"imagenes/person-sprite.png");
-	personaje2=new PNJ(canvas.width/2-32,canvas.height/2-32,6,2,canvas.width/2-32,canvas.width-32,"imagenes/person-sprite2.png");
+	personaje=new PNJ(0,canvas.height/2-32,2,2,0,canvas.width,"imagenes/person-sprite.png");
+	personaje2=new PNJ(canvas.width-32,canvas.height/2-32,2,2,0,canvas.width,"imagenes/person-sprite2.png");
 	arrayNieve=new Nieve(200);
+	arbol=new Image();
+	arbol.src="imagenes/christmas-tree.png";
 	
 	EM=new EventManager();
 	EM.canvas = canvas;
 	EM.addEventsListeners();
-	cadenaMensaje="¡FELIZ NAVIDAD "+locationVars('nombre')+"!";
-	contador=canvas.width;
+	mensaje=new TextoAnimado(40);
 	setInterval(hilo_juego,100);
 }
 
@@ -71,22 +56,16 @@ var hilo_juego=function(){
 var render_juego=function(){
 	ctx.clearRect(0,0,canvas.width, canvas.height);
 	
-	ctx.font="bold 20px Calibri";
-	ctx.fillStyle="white";
-	ctx.textAlign="left";
-	ctx.textBaseline="top";
-	ctx.fillText(cadenaMensaje,contador,0);
-	contador--;
-	if(contador===(-20*cadenaMensaje.length-20)){
-		contador=canvas.width;
-	}
-	
-	personaje.render();
-	personaje2.render();
+	mensaje.render();
 	
 	ctx.fillStyle="white";
 	ctx.fillRect(0,canvas.height/2,canvas.width,canvas.height/2);
 	
+	personaje.render();
+	personaje2.render();
+	
+	ctx.drawImage(arbol,canvas.width/2-64,canvas.height/2-118);
+			
 	ctx.font="italic 1em Calibri";
 	ctx.fillStyle="green";
 	ctx.textAlign="center";
@@ -98,10 +77,20 @@ var render_juego=function(){
 
 var logica_juego=function(){
 	if(EM.isTouchUp()) {
-		console.log("personaje X: "+personaje.x+"; X: "+EM.canX);
-		console.log("personaje Y: "+personaje.y+"; Y: "+EM.canY);
 		if(personaje.tocado(EM.canX,EM.canY)===1){
-			personaje.mover(6,6,10,canvas.width/2);
+			if(personaje.direccion===2){
+				personaje.mover(6,2,0,canvas.width);
+			}else{
+				personaje.parar();
+			}
+		}
+		
+		if(personaje2.tocado(EM.canX,EM.canY)===1){
+			if(personaje2.direccion===2){
+				personaje2.mover(3,2,0,canvas.width);
+			}else{
+				personaje2.parar();
+			}
 		}
 	}	
 }
