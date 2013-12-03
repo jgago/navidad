@@ -22,6 +22,19 @@ function locationVars (vr){
 	}
 }
 
+function setFullscreen(){
+	var w=window.innerWidth/canvas.width;
+	var h=window.innerHeight/canvas.height;
+	var scale=Math.min(h,w);
+
+	canvas.style.width=(canvas.width*scale)+'px';
+	canvas.style.height=(canvas.height*scale)+'px';
+	canvas.style.position='fixed';
+	canvas.style.left='50%';
+	canvas.style.top='50%';
+	canvas.style.marginLeft=-(canvas.width*scale)/2+'px';
+	canvas.style.marginTop=-(canvas.height*scale)/2+'px';
+}
 
 main = function() {
 
@@ -34,6 +47,7 @@ main = function() {
 	// definimos la dimension del canvas. 
 	canvas.width  = window.innerWidth;
 	canvas.height = window.innerHeight;
+	setFullscreen();
 	
 	personaje=new PNJ(10,canvas.height/2-32,2,5,10,canvas.width/2-32,"imagenes/person-sprite.png");
 	personaje2=new PNJ(canvas.width/2-32,canvas.height/2-32,6,2,canvas.width/2-32,canvas.width-32,"imagenes/person-sprite2.png");
