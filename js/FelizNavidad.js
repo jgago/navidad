@@ -12,6 +12,7 @@ var EM;
 var mensaje;
 var estado;
 var parpadeo;
+var recargado=false;
 
 
 function setFullScreen(){
@@ -154,7 +155,8 @@ var logica_juego=function(){
 		parpadeo=parpadeo%10;
 	}
 	
-	if((canvas.width!=window.innerWidth)||(canvas.height!=window.innerHeight)){
+	if(((canvas.width!=window.innerWidth)||(canvas.height!=window.innerHeight))&&(!recargado)){
+		recargado=true;
 		location.reload(true);
 	}
 }
