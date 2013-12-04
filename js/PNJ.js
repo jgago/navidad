@@ -1,8 +1,7 @@
 ﻿'use strict';
 
-var cargado=false;
-
 var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
+	var cargado=false;
 	this.x=x;
 	this.y=y;
 	this.width=w;
@@ -83,120 +82,117 @@ var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 		}
 	}
 	
+	var onImageLoad=function(){
+		console.log("Imagen cargada.");
+		cargado=true;
+	}
+	
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
 	this.sprite.src = sr
-}
-
-
-var onImageLoad=function(){
-	console.log("Imagen cargada.");
-	cargado=true;
-}
-
-var imagenes_data = {"frames": {
-	"person01.png":
-	{
-		"frame": {"x":0,"y":0,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person02.png":
-	{
-		"frame": {"x":32,"y":0,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person03.png":
-	{
-		"frame": {"x":64,"y":0,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person04.png":
-	{
-		"frame": {"x":0,"y":32,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person05.png":
-	{
-		"frame": {"x":32,"y":32,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person06.png":
-	{
-		"frame": {"x":64,"y":32,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person07.png":
-	{
-		"frame": {"x":0,"y":64,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person08.png":
-	{
-		"frame": {"x":32,"y":64,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person09.png":
-	{
-		"frame": {"x":64,"y":64,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person10.png":
-	{
-		"frame": {"x":0,"y":96,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person11.png":
-	{
-		"frame": {"x":32,"y":96,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	},
-	"person12.png":
-	{
-		"frame": {"x":64,"y":96,"w":32,"h":32},
-		"rotated": false,
-		"trimmed": false,
-		"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
-		"sourceSize": {"w":32,"h":32}
-	}},
-	"meta": {
-		"image": "person-sprite.png",
-		"format": "RGBA8888",
-		"size": {"w":96,"h":128},
-		"scale": "1"
+	
+	var imagenes_data = {"frames": {
+		"person01.png":
+		{
+			"frame": {"x":0,"y":0,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person02.png":
+		{
+			"frame": {"x":32,"y":0,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person03.png":
+		{
+			"frame": {"x":64,"y":0,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person04.png":
+		{
+			"frame": {"x":0,"y":32,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person05.png":
+		{
+			"frame": {"x":32,"y":32,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person06.png":
+		{
+			"frame": {"x":64,"y":32,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person07.png":
+		{
+			"frame": {"x":0,"y":64,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person08.png":
+		{
+			"frame": {"x":32,"y":64,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person09.png":
+		{
+			"frame": {"x":64,"y":64,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person10.png":
+		{
+			"frame": {"x":0,"y":96,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person11.png":
+		{
+			"frame": {"x":32,"y":96,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		},
+		"person12.png":
+		{
+			"frame": {"x":64,"y":96,"w":32,"h":32},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+			"sourceSize": {"w":32,"h":32}
+		}},
+		"meta": {
+			"image": "person-sprite.png",
+			"format": "RGBA8888",
+			"size": {"w":96,"h":128},
+			"scale": "1"
+		}
 	}
 }
-
-window.onload = main;

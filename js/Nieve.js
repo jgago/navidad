@@ -1,15 +1,14 @@
 'use strict';
 
-var matriz;
-
-var inicializar_copo=function(i){
-	matriz[i][0]=Math.random()*canvas.width;
-	matriz[i][1]=Math.random()*canvas.height/10;
-	matriz[i][2]=canvas.height/100+Math.random()*4;
-}
-
 var Nieve=function(tam){
-	matriz=new Array(tam);
+	var matriz=new Array(tam);
+	
+	var inicializar_copo=function(i){
+		matriz[i][0]=Math.random()*canvas.width;
+		matriz[i][1]=Math.random()*canvas.height/10;
+		matriz[i][2]=canvas.height/100+Math.random()*4;
+	}
+	
 	for(var i=0;i<matriz.length;i++){
 		matriz[i]=new Array(3);
 		inicializar_copo(i);

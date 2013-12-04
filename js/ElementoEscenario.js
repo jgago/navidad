@@ -1,8 +1,7 @@
 'use strict';
 
-var cargado=false;
-
 var ElementoEscenario=function(x,y,w,h,sr){
+	var cargado=false;
 	this.x=x;
 	this.y=y;
 	this.width=w;
@@ -23,12 +22,12 @@ var ElementoEscenario=function(x,y,w,h,sr){
 		}
 	}
 	
+	var onImageLoad=function(){
+		console.log("Imagen cargada.");
+		cargado=true;
+	}
+	
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
 	this.sprite.src = sr
-}
-
-var onImageLoad=function(){
-	console.log("Imagen cargada.");
-	cargado=true;
 }
