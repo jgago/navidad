@@ -14,7 +14,6 @@ var estado;
 var parpadeo;
 var recargado=false;
 
-
 function setFullScreen(){
 	var w=window.innerWidth/canvas.width;
 	var h=window.innerHeight/canvas.height;
