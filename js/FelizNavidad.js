@@ -136,7 +136,7 @@ var logica_juego=function(){
 			personaje2.mover(3,2,0,canvas.width);
 		}
 		
-		if((!personaje.estaParado())&&(!personaje2.estaParado())&&(arbol.tocado(EM.canX,EM.canY))){
+		if((estado===1)&&(arbol.tocado(EM.canX,EM.canY))){
 			estado=2;
 		}else{	
 			if((estado===2)&&(regalos.tocado(EM.canX,EM.canY))){
