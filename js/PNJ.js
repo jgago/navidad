@@ -1,10 +1,12 @@
 ﻿var canvas = null;
 var ctx = null;
-var cargado=0;
+var cargado=false;
 
-var PNJ=function(x,y,d,v,pMin,pMax,sr){
+var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 	this.x=x;
 	this.y=y;
+	this.width=w;
+	this.height=h;
 	this.direccion=d;
 	this.velocidad=v;
 	this.currentFrame=1;
@@ -13,7 +15,7 @@ var PNJ=function(x,y,d,v,pMin,pMax,sr){
 	this.pMax=pMax;
 	
 	this.render = function(){
-		if (cargado===1){
+		if (cargado){
 			var image_number = "";
 			if (this.currentFrame<10) {
 				image_number = "0"+this.currentFrame;
@@ -26,7 +28,7 @@ var PNJ=function(x,y,d,v,pMin,pMax,sr){
 			var current_image_json=imagenes_data.frames[image_name].frame;
 			ctx.drawImage(this.sprite,current_image_json.x, current_image_json.y, current_image_json.w, current_image_json.h,this.x,this.y,current_image_json.w,current_image_json.h);
 			
-			if(this.direccion===2){
+			if(this.estaParado()){
 				this.currentFrame=this.direccion;
 			}
 			else{
@@ -66,7 +68,15 @@ var PNJ=function(x,y,d,v,pMin,pMax,sr){
 	}
 	
 	this.tocado=function(x,y){
-		if((x>=this.x)&&(x<=this.x+32)&&(y>=this.y)&&(y<=this.y+32)){
+		if((x>=this.x)&&(x<=this.x+this.width)&&(y>=this.y)&&(y<=this.y+this.height)){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+	
+	this.estaParado=function(){
+		if(this.direccion===2){
 			return 1;
 		}else{
 			return 0;
@@ -87,9 +97,10 @@ var PNJ=function(x,y,d,v,pMin,pMax,sr){
 	this.sprite.src = sr
 }
 
+
 var onImageLoad=function(){
 	console.log("Imagen cargada.");
-	cargado=1;
+	cargado=true;
 }
 
 var imagenes_data = {"frames": {

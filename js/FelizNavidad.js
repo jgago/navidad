@@ -52,7 +52,6 @@ main = function() {
 	// obtiene el contexto
 	ctx   = canvas.getContext('2d');
 	
-	
 	// definimos la dimension del canvas. 
 	canvas.width  = window.innerWidth;
 	canvas.height = window.innerHeight;
@@ -61,21 +60,17 @@ main = function() {
 	estado=0;
 	parpadeo=0;
 	
-	personaje=new PNJ(0,canvas.height/2-20,2,2,0,canvas.width,"imagenes/person-sprite.png");
-	personaje2=new PNJ(canvas.width-32,canvas.height/2-20,2,2,0,canvas.width,"imagenes/person-sprite2.png");
-	papaNoel=new PNJ(-64,canvas.height/2-10,2,5,-128,canvas.width+128,"imagenes/noel-sprite.png");
-	reno=new PNJ(-128,canvas.height/2-10,2,5,-128,canvas.width+128,"imagenes/reno-sprite.png");
+	personaje=new PNJ(0,canvas.height/2-20,32,32,2,2,0,canvas.width,"imagenes/person-sprite.png");
+	personaje2=new PNJ(canvas.width-32,canvas.height/2-20,32,32,2,2,0,canvas.width,"imagenes/person-sprite2.png");
+	papaNoel=new PNJ(-64,canvas.height/2-10,32,32,2,5,-128,canvas.width+128,"imagenes/noel-sprite.png");
+	reno=new PNJ(-128,canvas.height/2-10,32,32,2,5,-128,canvas.width+128,"imagenes/reno-sprite.png");
 	
 	arrayNieve=new Nieve(200);
 	
-	arbol=new Image();
-	arbol.src="imagenes/christmas-tree.png";
+	arbol=new ElementoEscenario(canvas.width/2-64,canvas.height/2-118,128,128,"imagenes/christmas-tree.png");
 	
-	regalos=new Image();
-	regalos.src="imagenes/regalos.png";
-	
-	regalosAbiertos=new Image();
-	regalosAbiertos.src="imagenes/regalos-abiertos.png";
+	regalos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos.png");
+	regalosAbiertos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos-abiertos.png");
 	
 	EM=new EventManager();
 	EM.canvas = canvas;
@@ -97,7 +92,7 @@ var render_juego=function(){
 	ctx.fillStyle="white";
 	ctx.fillRect(0,canvas.height/2,canvas.width,canvas.height/2);
 		
-	ctx.drawImage(arbol,canvas.width/2-64,canvas.height/2-118);
+	arbol.render();
 
 	personaje.render();
 	personaje2.render();
@@ -106,9 +101,9 @@ var render_juego=function(){
 	
 	if(estado===2)
 	{
-		ctx.drawImage(regalos,canvas.width/2-41,canvas.height/2+5);
+		regalos.render();
 	}else if(estado>=3){
-		ctx.drawImage(regalosAbiertos,canvas.width/2-41,canvas.height/2+5);
+		regalosAbiertos.render();
 		ctx.font="bold 10px Arial";
 		if(parpadeo>=5){
 			ctx.fillStyle="magenta";
@@ -131,26 +126,26 @@ var render_juego=function(){
 
 var logica_juego=function(){
 	if(EM.isTouchUp()) {
-		if((personaje.tocado(EM.canX,EM.canY)===1) && (personaje.direccion===2)){
+		if((personaje.tocado(EM.canX,EM.canY)) && (personaje.estaParado())){
 			personaje.mover(6,2,0,canvas.width);
 		}
 		
-		if((personaje2.tocado(EM.canX,EM.canY)===1)&&(personaje2.direccion===2)){
+		if((personaje2.tocado(EM.canX,EM.canY))&&(personaje2.estaParado())){
 			personaje2.mover(3,2,0,canvas.width);
 		}
 		
-		if((estado===1)&&(EM.canX>=canvas.width/2-64)&&(EM.canX<=canvas.width/2+64)&&(EM.canY>=canvas.height/2-118)&&(EM.canY<=canvas.height/2-2)){
+		if((estado===1)&&(arbol.tocado(EM.canX,EM.canY))){
 			estado=2;
-		}
-		
-		if((estado===2)&&(EM.canX>=canvas.width/2-41)&&(EM.canX<=canvas.width/2+41)&&(EM.canY>=canvas.height/2+5)&&(EM.canY<=canvas.height/2+35)){
-			estado=3;
-			papaNoel.mover(6,5,-128,canvas.width+128);
-			reno.mover(6,5,-128,canvas.width+128);
+		}else{	
+			if((estado===2)&&(regalos.tocado(EM.canX,EM.canY))){
+				estado=3;
+				papaNoel.mover(6,5,-128,canvas.width+128);
+				reno.mover(6,5,-128,canvas.width+128);
+			}
 		}
 	}
 	
-	if((estado===0)&&(personaje.direccion!=2)&&(personaje2.direccion!=2)){
+	if((estado===0)&&(!personaje.estaParado())&&(!personaje2.estaParado())){
 		estado=1;
 	}
 	
