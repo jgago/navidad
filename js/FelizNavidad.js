@@ -49,10 +49,10 @@ function locationVars (vr){
 
 var main = function() {
 
-	canvas  = document.getElementById('canvas');
+	canvas = document.getElementById('canvas');
 
 	// obtiene el contexto
-	ctx   = canvas.getContext('2d');
+	ctx = canvas.getContext('2d');
 	
 	// definimos la dimension del canvas. 
 	canvas.width  = window.innerWidth;
