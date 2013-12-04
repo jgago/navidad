@@ -130,15 +130,11 @@ var logica_juego=function(){
 	if(EM.isTouchUp()) {
 		if((personaje.tocado(EM.canX,EM.canY)) && (personaje.estaParado())){
 			personaje.mover(6,2,0,canvas.width);
-		}else if((personaje.tocado(EM.canX,EM.canY)) && (!personaje.estaParado())){
-			personaje.parar();
 		}
 		
 		if((personaje2.tocado(EM.canX,EM.canY))&&(personaje2.estaParado())){
 			personaje2.mover(3,2,0,canvas.width);
-		} else if((personaje2.tocado(EM.canX,EM.canY)) && (!personaje2.estaParado())){
-			personaje2.parar();
-		} 
+		}
 		
 		if((!personaje.estaParado())&&(!personaje2.estaParado())&&(arbol.tocado(EM.canX,EM.canY))){
 			estado=2;
@@ -149,6 +145,10 @@ var logica_juego=function(){
 				reno.mover(6,5,-128,canvas.width+128);
 			}
 		}
+	}
+	
+	if((estado===0)&&(!personaje.estaParado())&&(!personaje2.estaParado())){
+		estado=1;
 	}
 	
 	if(estado>=3){
