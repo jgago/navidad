@@ -1,3 +1,5 @@
+'use strict';
+
 var cargado=false;
 
 var ElementoEscenario=function(x,y,w,h,sr){

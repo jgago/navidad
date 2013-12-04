@@ -1,3 +1,5 @@
+'use strict';
+
 var matriz;
 
 var inicializar_copo=function(i){

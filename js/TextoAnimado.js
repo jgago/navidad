@@ -1,3 +1,5 @@
+'use strict';
+
 var TextoAnimado=function(tam,fuente,cadena,pos,velocidad,color){
 	this.tam=tam;
 	this.fuente=fuente;

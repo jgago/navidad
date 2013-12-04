@@ -1,4 +1,6 @@
-﻿var cargado=false;
+﻿'use strict';
+
+var cargado=false;
 
 var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 	this.x=x;
