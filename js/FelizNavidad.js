@@ -2,6 +2,7 @@
 var ctx = null;
 var personaje=null;
 var personaje2=null;
+var papaNoel=null;
 var arbol=null;
 var arrayNieve;
 var EM;
@@ -22,6 +23,23 @@ function setFullScreen(){
 	canvas.style.marginTop=-(canvas.height*scale)/2+'px';
 }
 
+function locationVars (vr){		
+	try{
+        var src = String( window.location.href ).split('?')[1];
+        var vrs = src.split('&');
+ 
+        for (var x = 0, c = vrs.length; x < c; x++) {
+        	if (vrs[x].indexOf(vr) != -1){
+        		return decodeURI( vrs[x].split('=')[1] ).toUpperCase();
+        		break;
+        	}
+        }
+	}
+	catch(err){
+		return "A TODOS";
+	}
+}
+
 main = function() {
 
 	canvas  = document.getElementById('canvas');
@@ -37,6 +55,7 @@ main = function() {
 	
 	personaje=new PNJ(0,canvas.height/2-32,2,2,0,canvas.width,"imagenes/person-sprite.png");
 	personaje2=new PNJ(canvas.width-32,canvas.height/2-32,2,2,0,canvas.width,"imagenes/person-sprite2.png");
+	papaNoel=new PNJ(0,0,6,2,0,canvas.width,"imagenes/reno-sprite.png");
 	arrayNieve=new Nieve(200);
 	arbol=new Image();
 	arbol.src="imagenes/christmas-tree.png";
@@ -44,7 +63,7 @@ main = function() {
 	EM=new EventManager();
 	EM.canvas = canvas;
 	EM.addEventsListeners();
-	mensaje=new TextoAnimado(40);
+	mensaje=new TextoAnimado(40,"Lucida Handwriting","¡FELIZ NAVIDAD "+locationVars('nombre')+"!",0,1);
 	setInterval(hilo_juego,100);
 }
 
@@ -63,20 +82,21 @@ var render_juego=function(){
 	
 	personaje.render();
 	personaje2.render();
+	papaNoel.render();
 	
 	ctx.drawImage(arbol,canvas.width/2-64,canvas.height/2-118);
 			
-	ctx.font="italic 1em Calibri";
+	ctx.font="italic 20px Lucida Handwriting";
 	ctx.fillStyle="green";
 	ctx.textAlign="center";
 	ctx.textBaseline="bottom";
-	ctx.fillText("By J.GAGO",canvas.width/2,canvas.height,canvas.width);
+	ctx.fillText("By J.GAGO",canvas.width/2,3*canvas.height/4,canvas.width);
 	
 	arrayNieve.render();
 }
 
 var logica_juego=function(){
-	if(EM.isTouchDown()) {
+	if(EM.isTouchUp()) {
 		if(personaje.tocado(EM.canX,EM.canY)===1){
 			personaje.mover(6,2,0,canvas.width);
 		}
