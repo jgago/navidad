@@ -1,6 +1,3 @@
-var canvas = null;
-var ctx = null;
-
 var TextoAnimado=function(tam,fuente,cadena,pos,velocidad,color){
 	this.tam=tam;
 	this.fuente=fuente;
@@ -9,17 +6,7 @@ var TextoAnimado=function(tam,fuente,cadena,pos,velocidad,color){
 	this.posicion=pos;
 	this.cadenaMensaje=cadena;
 	this.color=color;
-	
-	canvas  = document.getElementById('canvas');
-
-	// obtiene el contexto
-	ctx   = canvas.getContext('2d');
-	
-	
-	// definimos la dimension del canvas. 
-	canvas.width  = window.innerWidth;
-	canvas.height = window.innerHeight;
-	
+		
 	this.contador=canvas.width;
 	
 	this.render=function(){

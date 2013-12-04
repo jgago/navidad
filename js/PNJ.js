@@ -1,6 +1,4 @@
-﻿var canvas = null;
-var ctx = null;
-var cargado=false;
+﻿var cargado=false;
 
 var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 	this.x=x;
@@ -83,15 +81,6 @@ var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 		}
 	}
 	
-	canvas  = document.getElementById('canvas');
-
-	// obtiene el contexto
-	ctx   = canvas.getContext('2d');
-	
-	
-	// definimos la dimension del canvas. 
-	canvas.width  = window.innerWidth;
-	canvas.height = window.innerHeight;
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
 	this.sprite.src = sr

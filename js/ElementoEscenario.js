@@ -1,5 +1,3 @@
-var canvas = null;
-var ctx = null;
 var cargado=false;
 
 var ElementoEscenario=function(x,y,w,h,sr){
@@ -23,15 +21,6 @@ var ElementoEscenario=function(x,y,w,h,sr){
 		}
 	}
 	
-	canvas  = document.getElementById('canvas');
-
-	// obtiene el contexto
-	ctx  = canvas.getContext('2d');
-	
-	
-	// definimos la dimension del canvas. 
-	canvas.width  = window.innerWidth;
-	canvas.height = window.innerHeight;
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
 	this.sprite.src = sr

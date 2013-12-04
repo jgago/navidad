@@ -1,6 +1,3 @@
-var canvas = null;
-var ctx = null;
-
 var matriz;
 
 var inicializar_copo=function(i){
@@ -8,26 +5,14 @@ var inicializar_copo=function(i){
 	matriz[i][1]=Math.random()*canvas.height/10;
 	matriz[i][2]=canvas.height/100+Math.random()*4;
 }
-	
 
 var Nieve=function(tam){
-	canvas  = document.getElementById('canvas');
-
-	// obtiene el contexto
-	ctx   = canvas.getContext('2d');
-	
-	
-	// definimos la dimension del canvas. 
-	canvas.width  = window.innerWidth;
-	canvas.height = window.innerHeight;
-	
 	matriz=new Array(tam);
 	for(var i=0;i<matriz.length;i++){
 		matriz[i]=new Array(3);
 		inicializar_copo(i);
 	}
 	
-
 	this.render=function(){
 		ctx.fillStyle="white";
 		for(var i=0;i<matriz.length;i++){
