@@ -153,6 +153,10 @@ var logica_juego=function(){
 		parpadeo++;
 		parpadeo=parpadeo%10;
 	}
+	
+	if((canvas.width!=window.innerWidth)||(canvas.height!=window.innerHeight)){
+		location.reload(true);
+	}
 }
 
 window.onload = main;
