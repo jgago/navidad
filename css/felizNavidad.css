@@ -4,8 +4,10 @@ body {
 	background-color:red;
 }
 
-h1{
-	margin: 0 0 2px 0;
-	text-transform: uppercase;
-	text-align: center;
+::selection {
+	color:red;
 }
+
+::-moz-selection {
+	color:red;
+} 
