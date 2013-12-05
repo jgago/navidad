@@ -89,7 +89,7 @@ var PNJ=function(x,y,w,h,d,v,pMin,pMax,sr){
 	
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
-	this.sprite.src = sr
+	this.sprite.src = sr;
 	
 	var imagenes_data = {"frames": {
 		"person01.png":

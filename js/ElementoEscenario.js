@@ -29,5 +29,5 @@ var ElementoEscenario=function(x,y,w,h,sr){
 	
 	this.sprite = new Image();
 	this.sprite.onload = onImageLoad;
-	this.sprite.src = sr
+	this.sprite.src = sr;
 }
