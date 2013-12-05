@@ -10,7 +10,6 @@ var arbol=null;
 var regalos=null;
 var regalosAbiertos=null;
 var arrayNieve;
-var EM;
 var mensaje;
 var estado;
 var parpadeo;
@@ -74,7 +73,6 @@ var main = function() {
 	regalos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos.png");
 	regalosAbiertos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos-abiertos.png");
 	
-	EM=new EventManager();
 	EM.canvas = canvas;
 	EM.addEventsListeners();
 	mensaje=new TextoAnimado(40,"Arial","¡FELIZ NAVIDAD "+locationVars('nombre')+"!",0,3,"white");
