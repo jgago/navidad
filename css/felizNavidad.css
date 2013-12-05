@@ -3,11 +3,3 @@ body {
 	color:white;
 	background-color:red;
 }
-
-::selection {
-	color:red;
-}
-
-::-moz-selection {
-	color:red;
-} 

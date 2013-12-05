@@ -88,7 +88,8 @@ var hilo_juego=function(){
 }
 
 var render_juego=function(){
-	ctx.clearRect(0,0,canvas.width, canvas.height);
+	ctx.fillStyle="red";
+	ctx.fillRect(0,0,canvas.width, canvas.height/2);
 	
 	mensaje.render();
 	
