@@ -13,7 +13,8 @@ var arrayNieve;
 var mensaje;
 var estado;
 var parpadeo;
-var recargado=false;
+var recargado;
+var interval;
 
 function setFullScreen(){
 	var w=window.innerWidth/canvas.width;
@@ -47,7 +48,10 @@ function locationVars (vr){
 }
 
 var main = function() {
-
+	recargado=false;
+	estado=0;
+	parpadeo=0;
+	
 	canvas = document.getElementById('canvas');
 
 	// obtiene el contexto
@@ -57,9 +61,6 @@ var main = function() {
 	canvas.width  = window.innerWidth;
 	canvas.height = window.innerHeight;
 	setFullScreen();
-	
-	estado=0;
-	parpadeo=0;
 	
 	personaje=new PNJ(0,canvas.height/2-20,32,32,2,2,0,canvas.width,"imagenes/person-sprite.png");
 	personaje2=new PNJ(canvas.width-32,canvas.height/2-20,32,32,2,2,0,canvas.width,"imagenes/person-sprite2.png");
@@ -72,11 +73,13 @@ var main = function() {
 	
 	regalos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos.png");
 	regalosAbiertos=new ElementoEscenario(canvas.width/2-41,canvas.height/2+5,82,30,"imagenes/regalos-abiertos.png");
+
+	mensaje=new TextoAnimado(40,"Arial","¡FELIZ NAVIDAD "+locationVars('nombre')+"!",0,3,"white");
 	
 	EM.canvas = canvas;
 	EM.addEventsListeners();
-	mensaje=new TextoAnimado(40,"Arial","¡FELIZ NAVIDAD "+locationVars('nombre')+"!",0,3,"white");
-	setInterval(hilo_juego,100);
+
+	interval=setInterval(hilo_juego,100);
 }
 
 var hilo_juego=function(){
@@ -156,7 +159,8 @@ var logica_juego=function(){
 	
 	if(((canvas.width!=window.innerWidth)||(canvas.height!=window.innerHeight))&&(!recargado)){
 		recargado=true;
-		location.reload(true);
+		clearInterval(interval);
+		main();
 	}
 }
 
